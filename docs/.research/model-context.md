@@ -51,6 +51,8 @@
 - https://platform.openai.com/docs/guides/fine-tuning — same Cloudflare 403 issue.
 - https://platform.openai.com/docs/guides/prompt-engineering — same Cloudflare 403 issue.
 
+> **ARTICLE WRITER NOTE (AEE-201):** Do NOT use any specific multiplier ratio (not "1.5x", not "2x", not "4x") for non-English or code tokenization. There is no verified primary source for these numbers. The safe formulation: "CJK characters and source code typically require more tokens per unit of meaning than English prose." Use the tiktoken playground to demonstrate with a concrete example if needed — do not cite a ratio.
+
 ---
 
 ## AEE-202: Context Window Architecture
@@ -71,7 +73,7 @@
 - Finding: "performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts, even for explicitly long-context models."
 - Quantitative accuracy drop: The abstract states performance "degrades significantly" but does not give a specific percentage number. UNVERIFIED — check before citing: specific numbers (often cited as ~20 percentage point drop) would need to be verified against the paper body, which was not fetched. Do not cite a specific number without checking the full paper.
 
-> **ARTICLE WRITER NOTE:** The specific accuracy drop figure is in the paper body, not the abstract. AEE-108 already cites this paper and uses "more than 20 percentage points." You may use that phrasing citing arXiv:2307.03172. Do not invent a different number.
+> **ARTICLE WRITER NOTE (AEE-202):** Do NOT extrapolate from AEE-108. The fact that AEE-108 used "more than 20 percentage points" does not constitute verification. To cite a specific percentage, you must find it in the paper body (arXiv:2307.03172). If you cannot fetch the full paper, write "significant accuracy degradation" instead of a number. Do NOT cite "20 percentage points" without verifying it in the paper body.
 
 **Sliding window attention (Longformer)**
 - Paper: "Longformer: The Long-Document Transformer" by Beltagy, Peters, Cohan et al. (2020).
@@ -117,6 +119,8 @@
 **Anthropic tool use (structured output)**
 - https://docs.anthropic.com/en/docs/build-with-claude/tool-use — confirmed live; page title is "Tools — Overview / How tool use works". Anthropic uses tool definitions with JSON Schema to constrain structured outputs from Claude.
 - Schema design for reliability: UNVERIFIED — check before citing: specific schema design guidance (e.g., prefer required fields, avoid deeply nested optional objects) needs primary source verification against the actual tool use docs content (page was JS-rendered and full body was not extracted).
+
+> **ARTICLE WRITER NOTE (AEE-203):** Schema design best practices (flat structures, enums, explicit nullability) are established engineering knowledge rather than findings from a specific paper. Present them as design heuristics, not empirical claims. You do not need a citation for these design principles — they can be stated as "prefer X over Y because Z" without a reference URL.
 
 ### Verified sources
 - https://github.com/dottxt-ai/outlines — confirmed live (HTTP 200); "Structured Outputs" library under dottxt-ai organization
@@ -192,6 +196,8 @@
 **Catastrophic forgetting**
 - UNVERIFIED — check before citing: description of catastrophic forgetting (the model loses general capabilities when fine-tuned on narrow data) and mitigation strategies (rehearsal/replay, regularization, LoRA which preserves frozen base weights) were not confirmed from a primary source during this research pass.
 
+> **ARTICLE WRITER NOTE (AEE-205):** Catastrophic forgetting is a well-established phenomenon in machine learning (not LLM-specific). You may describe it as: "Fine-tuning on a narrow task can reduce the model's performance on tasks it previously handled well — a phenomenon known as catastrophic forgetting." Do NOT cite a specific mechanism or paper without a verified source. Treat it as practitioner background knowledge.
+
 ### Verified sources
 - https://arxiv.org/abs/2106.09685 — confirmed live (HTTP 200); "LoRA: Low-Rank Adaptation of Large Language Models" (Hu et al., 2021); abstract states 10,000x parameter reduction and 3x GPU memory reduction vs. full fine-tuning of GPT-3 175B
 - https://huggingface.co/docs/peft/index — confirmed live (HTTP 200); PEFT library overview page, current version v0.18.0
@@ -220,12 +226,14 @@
   - Available on Claude API and Azure AI Foundry (preview); Bedrock and Vertex AI support noted as "coming later."
 - The docs do not state an overall "X% cost savings" figure; the savings depend on the ratio of cache reads to cache writes in a given workload. The 90% discount on cache reads is the primary pricing fact.
 
+> **ARTICLE WRITER NOTE (AEE-206):** Only cite the specific confirmed multipliers: cache reads cost 0.1x base price (90% discount). Cache writes cost 1.25x (5-min TTL) or 2x (1-hour TTL). Do NOT extrapolate an "overall savings percentage" — the actual savings depend entirely on cache hit rate, which varies by workload. The correct statement is: "Cache reads are charged at 10% of the standard input token price."
+
 **LLM routing paper (arXiv 2410.10347)**
 - Paper: "A Unified Approach to Routing and Cascading for LLMs" — confirmed live, fetched from arxiv.org.
 - The abstract does NOT contain a "5x cost savings" claim. It states: "cascade routing consistently outperforms the individual approaches by a large margin." No specific cost multiplier is given in the abstract.
 - CRITICAL FLAG: The "5x cost savings" claim that was cited in an earlier article is NOT supported by the abstract of this paper. Article writers must NOT cite "5x cost savings" from arXiv:2410.10347 without locating the specific passage in the full paper body. This may be a fabricated or misattributed statistic.
 
-> **ARTICLE WRITER NOTE:** The "5x cost savings" figure used in AEE-111 may not be in the body of arXiv:2410.10347. The abstract only says "outperforms individual approaches by a large margin." For AEE-206, do NOT cite "5x" as a number. Instead write "significant cost reduction" and cite the paper generally, OR find the actual figure by checking the full paper body. Do not repeat the specific number from AEE-111 without independent verification.
+> **ARTICLE WRITER NOTE (AEE-206):** Do NOT cite "5x" or any specific multiplier for the routing paper (arXiv:2410.10347). The paper abstract does not support this number, and no other verified source has been found that does. Write "significant cost reduction" and cite the paper. If you want a specific number, you must fetch the full paper body and find it yourself — if not found, omit the number entirely.
 
 **TTFT vs. throughput**
 - UNVERIFIED — check before citing: definitions of TTFT (time to first token, measures perceived responsiveness/latency from user perspective) and throughput (tokens per second, measures sustained generation speed) are standard but were not confirmed from a primary source during this research pass.
