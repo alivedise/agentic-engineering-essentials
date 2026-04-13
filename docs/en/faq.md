@@ -44,3 +44,7 @@ A harness is the runtime infrastructure surrounding a single agent (lifecycle, t
 ### What if my situation requires deviating from an AEE?
 
 Document the reason. AEEs are guidelines, not laws. The goal is informed decisions, not blind compliance.
+
+## Changelog
+
+- 2026-04-13 -- Initial draft

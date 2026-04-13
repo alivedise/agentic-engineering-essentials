@@ -23,7 +23,7 @@ This is a VitePress-based bilingual (EN + zh-TW) documentation site for Agentic 
 - Each AEE file uses frontmatter: `id` (number), `title`, `state` (draft/reviewing/approved), `overview` (boolean, only for category overviews)
 - File names match the AEE id: e.g., `700.md` for AEE-700
 - AEE articles follow the template: Context, Design Think, Deep Dive (optional), Best Practices (optional), Visual (optional), Examples (optional), Related AEEs, References, Changelog
-- `Design Think` is required and replaces "Principle" from FEE/BEE -- signals architectural framing, not prescriptive rules
+- `Design Think` is required and replaces "Principle" from FEE/BEE -- signals architectural framing, not prescriptive rules. Exception: articles with `overview: true` in frontmatter (e.g., AEE-0) use a different structure (Purpose, Categories, Related Resources) and are exempt from this requirement.
 - `Changelog` is required -- format: `YYYY-MM-DD -- description`
 - Uses RFC 2119 keywords (MUST, SHOULD, MAY) for guidance levels
 - EN and zh-TW content are parallel -- every EN file has a zh-TW counterpart
