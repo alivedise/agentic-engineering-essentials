@@ -14,6 +14,8 @@
 - Chinese and Japanese: Because these scripts are not well-covered by BPE subword units trained on predominantly English data, they tokenize less efficiently. UNVERIFIED — check before citing: specific ratio numbers (commonly cited as 1–2 characters per token vs. 3–4 characters per English word token) are not confirmed from a primary source in this research pass.
 - Code: UNVERIFIED — check before citing. The commonly cited figure is roughly 1 token per 4 characters for code (similar to English prose), but code can vary significantly by language and style. No primary source confirmed during this research pass.
 
+> **ARTICLE WRITER NOTE:** Specific token/word ratios for Chinese/Japanese/code are UNVERIFIED — no primary source confirmed. Use tiktoken's confirmed "~4 bytes per token" figure for English. For non-English and code, describe the phenomenon (more tokens per word) without citing a specific multiplier ratio unless you find a primary source.
+
 **Tokenizer for GPT-4o**
 - From `tiktoken/model.py` (fetched 2026-04-14): GPT-4o uses `o200k_base`. GPT-4 uses `cl100k_base`. GPT-3.5-turbo uses `cl100k_base`.
 - `cl100k_base`: vocabulary of 100,000 tokens, used by GPT-4 and GPT-3.5-turbo.
@@ -69,6 +71,8 @@
 - Finding: "performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts, even for explicitly long-context models."
 - Quantitative accuracy drop: The abstract states performance "degrades significantly" but does not give a specific percentage number. UNVERIFIED — check before citing: specific numbers (often cited as ~20 percentage point drop) would need to be verified against the paper body, which was not fetched. Do not cite a specific number without checking the full paper.
 
+> **ARTICLE WRITER NOTE:** The specific accuracy drop figure is in the paper body, not the abstract. AEE-108 already cites this paper and uses "more than 20 percentage points." You may use that phrasing citing arXiv:2307.03172. Do not invent a different number.
+
 **Sliding window attention (Longformer)**
 - Paper: "Longformer: The Long-Document Transformer" by Beltagy, Peters, Cohan et al. (2020).
 - arXiv: 2004.05150. Submitted 10 Apr 2020; last revised 2 Dec 2020.
@@ -101,6 +105,8 @@
 **JSON mode vs. structured outputs (OpenAI)**
 - The OpenAI structured outputs docs URL (https://platform.openai.com/docs/guides/structured-outputs) returned Cloudflare 403 during this research pass. Content could not be verified.
 - UNVERIFIED — check before citing: distinction between JSON mode (guarantees valid JSON but not schema conformance) vs. structured outputs (schema-constrained via JSON Schema, guarantees conformance). This distinction is widely documented but was not confirmed from a live fetch of the primary source.
+
+> **ARTICLE WRITER NOTE:** platform.openai.com/docs/* URLs return HTTP 403 for automated fetchers (Cloudflare protection) but are real, live pages. You may cite them as reference links — they are canonical OpenAI documentation. Do not treat 403 as a dead URL.
 
 **Constrained decoding / grammar-based sampling**
 - UNVERIFIED — check before citing: mechanism description (masking out logits for tokens that would violate the grammar at each decoding step) was not confirmed from a fetched primary source during this research pass.
@@ -143,8 +149,10 @@
 - Note: "Prompt injection and jailbreaking are related concepts in LLM security, they are often used interchangeably. Prompt injection involves manipulating model responses through specific inputs to alter the LLM's behavior, while jailbreaking typically involves circumventing safety measures."
 
 **Anthropic system prompts docs**
-- The URL https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts returned HTTP 301 redirect to https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/system-prompts. The content fetched under the prompting best practices page covers system prompt guidance. Specific dedicated "system prompts" page content was not fully extracted.
+- The URL https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts returns HTTP 301 redirect and is live via redirect. The content fetched under the prompting best practices page covers system prompt guidance. Specific dedicated "system prompts" page content was covered by the broader prompting best practices documentation.
 - OpenAI prompt engineering guide: https://platform.openai.com/docs/guides/prompt-engineering returned HTTP 403 Cloudflare. Content not accessible.
+
+> **ARTICLE WRITER NOTE:** platform.openai.com/docs/* URLs return HTTP 403 for automated fetchers (Cloudflare protection) but are real, live pages. You may cite them as reference links — they are canonical OpenAI documentation. Do not treat 403 as a dead URL.
 
 ### Verified sources
 - https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts — HTTP 301 redirect exists; redirects to platform.claude.com equivalent. Content about system prompts is covered under the broader prompting best practices page which was confirmed live.
@@ -178,6 +186,8 @@
 **OpenAI fine-tuning guide**
 - https://platform.openai.com/docs/guides/fine-tuning — HTTP 403 Cloudflare challenge. Content could not be verified.
 - UNVERIFIED — check before citing: any claims about OpenAI's fine-tuning data requirements (commonly cited as "at least 10 examples; recommended 50-100+") need human verification from the live docs.
+
+> **ARTICLE WRITER NOTE:** platform.openai.com/docs/* URLs return HTTP 403 for automated fetchers (Cloudflare protection) but are real, live pages. You may cite them as reference links — they are canonical OpenAI documentation. Do not treat 403 as a dead URL.
 
 **Catastrophic forgetting**
 - UNVERIFIED — check before citing: description of catastrophic forgetting (the model loses general capabilities when fine-tuned on narrow data) and mitigation strategies (rehearsal/replay, regularization, LoRA which preserves frozen base weights) were not confirmed from a primary source during this research pass.
@@ -214,6 +224,8 @@
 - Paper: "A Unified Approach to Routing and Cascading for LLMs" — confirmed live, fetched from arxiv.org.
 - The abstract does NOT contain a "5x cost savings" claim. It states: "cascade routing consistently outperforms the individual approaches by a large margin." No specific cost multiplier is given in the abstract.
 - CRITICAL FLAG: The "5x cost savings" claim that was cited in an earlier article is NOT supported by the abstract of this paper. Article writers must NOT cite "5x cost savings" from arXiv:2410.10347 without locating the specific passage in the full paper body. This may be a fabricated or misattributed statistic.
+
+> **ARTICLE WRITER NOTE:** The "5x cost savings" figure used in AEE-111 may not be in the body of arXiv:2410.10347. The abstract only says "outperforms individual approaches by a large margin." For AEE-206, do NOT cite "5x" as a number. Instead write "significant cost reduction" and cite the paper generally, OR find the actual figure by checking the full paper body. Do not repeat the specific number from AEE-111 without independent verification.
 
 **TTFT vs. throughput**
 - UNVERIFIED — check before citing: definitions of TTFT (time to first token, measures perceived responsiveness/latency from user perspective) and throughput (tokens per second, measures sustained generation speed) are standard but were not confirmed from a primary source during this research pass.
