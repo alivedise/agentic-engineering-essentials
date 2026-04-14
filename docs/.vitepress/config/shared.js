@@ -18,6 +18,7 @@ export const shared = {
       },
     ]);
   },
+  srcExclude: ['**/superpowers/**'],
   cleanUrls: true,
   base: '/agentic-engineering-essentials/',
   lastUpdated: true,
