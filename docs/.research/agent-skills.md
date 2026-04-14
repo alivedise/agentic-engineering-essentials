@@ -27,7 +27,8 @@ None. The foundational definition is well-documented at the open standard site.
 ### Superpowers (obra/superpowers)
 
 - **What it is**: An open-source agentic skills framework and software development methodology, NOT developed by Anthropic. Created by Jesse Vincent (obra) and community.
-- **Official plugin listing**: https://claude.com/plugins/superpowers (Anthropic marketplace entry, accepted January 2026)
+- **Official plugin listing**: https://claude.com/plugins/superpowers (Anthropic marketplace entry)
+  - CRITICAL FLAG: The superpowers plugin listing does not show a publication or acceptance date — do not cite a date in the article.
 - **GitHub repo**: https://github.com/obra/superpowers
 - **Installation via Claude Code plugin system**: `/plugin install superpowers@claude-plugins-official`
   - Source: GitHub README (fetched) and claude.com/plugins/superpowers page
@@ -38,12 +39,16 @@ None. The foundational definition is well-documented at the open standard site.
 
 ### Claude Code Skills (formerly "slash commands" / "custom commands")
 
-- **Official docs URL**: https://code.claude.com/docs/en/skills
+- **Implementor distinction**: agentskills.io lists "Claude" (the platform API / claude.ai) and "Claude Code" (the CLI) as **separate implementors** pointing to different documentation URLs. AEE-502 is specifically about Claude Code, so use `code.claude.com/docs` URLs, not the Claude platform docs URL.
+  - Claude Code skills docs: https://code.claude.com/docs/en/skills (for Claude Code CLI users — this is the AEE-502 source)
+  - Claude platform skills docs: a different URL listed on agentskills.io — confirm the exact URL from agentskills.io if needed for the article
+- **Official docs URL (Claude Code CLI)**: https://code.claude.com/docs/en/skills
   - (The old URL https://docs.anthropic.com/en/docs/claude-code/slash-commands now permanently redirects to https://code.claude.com/docs/en/slash-commands, which in turn serves the skills page.)
 - **Current system**: "Custom commands" have been merged into "skills" as of the current docs. The `.claude/commands/` path still works but skills (`.claude/skills/`) are the recommended approach.
 - **Storage paths — CONFIRMED**:
   - Personal (user-level): `~/.claude/skills/<skill-name>/SKILL.md` — confirmed
   - Project-level: `.claude/skills/<skill-name>/SKILL.md` — confirmed
+  - Plugin-level: `<plugin>/skills/<skill-name>/SKILL.md` — path used by the superpowers plugin system when installing skills via the Claude Code plugin manager. Skills installed this way live inside the plugin's own directory tree.
   - Legacy custom commands path still works: `.claude/commands/<name>.md` — confirmed as still supported; "Your existing `.claude/commands/` files keep working."
   - Note: The old `~/.claude/commands/` path (user-level custom commands) is implicitly still supported but the docs now direct users to `~/.claude/skills/`. The docs do NOT explicitly call out `~/.claude/commands/` as the user-level commands path in current documentation.
 - **CRITICAL FLAG — ~/.claude/commands/ user-level path**: The current Claude Code docs (fetched from code.claude.com/docs/en/skills, April 2026) show the user-level path is now `~/.claude/skills/`. The old `~/.claude/commands/` user-level path is not confirmed in current docs; only the project-level `.claude/commands/` backward-compat path is mentioned. If AEE-502 claims `~/.claude/commands/` as the user-level storage, that claim needs qualification: it may have been accurate historically but the current docs point to `~/.claude/skills/` for new usage.
@@ -83,15 +88,17 @@ None. The foundational definition is well-documented at the open standard site.
 
 ### CRITICAL FLAGS (summary)
 
-1. **Superpowers npm package name**: No dedicated npm package found. Distribution is via `/plugin install superpowers@claude-plugins-official` (Claude plugin system) or git clone. Do not claim an npm package name in the article without further verification.
+1. **Superpowers plugin listing — no date**: The claude.com/plugins/superpowers page does not show a publication or acceptance date. Do not cite "accepted January 2026" or any other date in the article.
 
-2. **`~/.claude/commands/` as user-level storage**: The current Claude Code docs (April 2026) have migrated to `~/.claude/skills/` as the user-level path. The `~/.claude/commands/` path is not confirmed as the current user-level storage location. If used in AEE-502, qualify as "legacy" or "also supported."
+2. **Superpowers npm package name**: No dedicated npm package found. Distribution is via `/plugin install superpowers@claude-plugins-official` (Claude plugin system) or git clone. Do not claim an npm package name in the article without further verification.
 
-3. **`.cursorrules` legacy path**: Current Cursor docs do not mention `.cursorrules`. The canonical path is `.cursor/rules/*.mdc`. Any claim that `.cursorrules` is still supported needs verification against current Cursor docs.
+3. **`~/.claude/commands/` as user-level storage**: The current Claude Code docs (April 2026) have migrated to `~/.claude/skills/` as the user-level path. The `~/.claude/commands/` path is not confirmed as the current user-level storage location. If used in AEE-502, qualify as "legacy" or "also supported."
 
-4. **OpenAI Custom GPT docs — fetch blocked**: OpenAI help.openai.com returns 403 to automated fetches. URL existence confirmed via search index; content description sourced from search snippets only.
+4. **`.cursorrules` legacy path**: Current Cursor docs do not mention `.cursorrules`. The canonical path is `.cursor/rules/*.mdc`. Any claim that `.cursorrules` is still supported needs verification against current Cursor docs.
 
-5. **Cursor Rules vs Cursor Skills**: Cursor appears to have two overlapping features — "Rules" (cursor.com/docs/rules, `.cursor/rules/*.mdc`) and "Skills" (cursor.com/docs/context/skills, Agent Skills standard). The article should clarify which one it is discussing and whether they are the same feature under different names.
+5. **OpenAI Custom GPT docs — fetch blocked**: OpenAI help.openai.com returns 403 to automated fetches. URL existence confirmed via search index; content description sourced from search snippets only.
+
+6. **Cursor Rules vs Cursor Skills**: Cursor appears to have two overlapping features — "Rules" (cursor.com/docs/rules, `.cursor/rules/*.mdc`) and "Skills" (cursor.com/docs/context/skills, Agent Skills standard). The article should clarify which one it is discussing and whether they are the same feature under different names.
 
 ---
 
