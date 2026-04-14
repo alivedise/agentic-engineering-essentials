@@ -48,3 +48,8 @@ title: AEE list
 - [506.Skill Governance](506)
 - [700.What Is a Harness?](700)
 - [701.The Agent Loop (ReAct)](701)
+- [702.Lifecycle Hooks](702)
+- [703.Context Assembly](703)
+- [704.Session Management](704)
+- [705.Permission Models](705)
+- [706.Error Recovery](706)
