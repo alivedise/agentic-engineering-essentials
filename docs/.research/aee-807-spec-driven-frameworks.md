@@ -521,3 +521,33 @@ The refinement: **context management** should be considered a fifth dimension. G
 5. **OpenSpec public vs. local disambiguation** — The local copy at `/Users/alive/Projects/dev/openspec/` is a project-specific installation. The canonical public repo is `Fission-AI/OpenSpec`. The article should cite the public repo; confirm the local version is not a fork with diverged conventions.
 
 6. **Superpowers skill version** — Research based on v5.0.7. Confirm this is the current release before publication; skill SKILL.md content may have changed in later versions.
+
+---
+
+## Author Gate Decisions
+
+### Framework List and Tier Assignments (finalized)
+
+**Tier 1 — full profiles:**
+- OpenSpec — github.com/Fission-AI/OpenSpec
+- BMAD-METHOD — github.com/bmad-code-org/BMAD-METHOD (canonical org as of 2026)
+- Kiro AI-DLC spec mode — kiro.dev/docs/specs/ + aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/
+- GitHub Spec Kit — github.com/github/spec-kit
+
+**Tier 2 — condensed profiles:**
+- Superpowers — local skills v5.0.7
+- Compound Engineering — github.com/EveryInc/compound-engineering-plugin
+- get-shit-done — github.com/gsd-build/get-shit-done
+
+**Honorable mention — one paragraph each, no full anatomy:**
+- gstack — github.com/garrytan/gstack (execution-quality complement, not standalone SDD)
+- claude-task-master — github.com/eyaltoledano/claude-task-master (defer to its own article)
+
+### Epistemic Flags
+
+- **Kiro regeneration model:** marked as inferred from workflow docs; not explicitly documented in public Kiro spec documentation. Add caveat in article.
+- **BMAD canonical URL:** use bmad-code-org/BMAD-METHOD (original bmadcode/ org appears archived).
+
+### Design Thesis Claim
+
+Confirmed. All verified frameworks map to the four dimensions (spec granularity, lifecycle integration, human gate placement, regeneration model).
