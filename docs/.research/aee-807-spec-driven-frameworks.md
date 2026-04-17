@@ -16,6 +16,7 @@
 | Superpowers | VERIFIED | local: `~/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/skills/` |
 | get-shit-done (GSD) | VERIFIED | https://github.com/gsd-build/get-shit-done |
 | gstack | VERIFIED | https://github.com/garrytan/gstack |
+| Compound Engineering (Every) | VERIFIED | https://github.com/EveryInc/compound-engineering-plugin |
 
 Notes on verification:
 - OpenSpec public canonical repo is `Fission-AI/OpenSpec` (40.7k stars, v1.3.0 as of 2026-04-11). Local installation at `/Users/alive/Projects/dev/openspec/` is a project-local copy of the same system.
@@ -374,6 +375,67 @@ Sprint-level orchestration with role-based quality assurance. Complements spec-f
 - Projects where review quality (security, performance, UX) is as important as spec quality
 - When compounding learned project context across sessions is valued
 - Greenfield projects where the product direction is still being discovered (office-hours-first model)
+
+---
+
+### 8. Compound Engineering (Every)
+
+**Source:** `https://github.com/EveryInc/compound-engineering-plugin` (14.5k stars, created October 2025, v2.67.0 as of April 2026); `https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents`
+
+#### 1. What it is
+A Claude Code / Cursor / multi-IDE plugin (and accompanying methodology) originated at Every, Inc. — the media company behind the "Chain of Thought" AI newsletter. Core thesis: each unit of engineering work should make subsequent units *easier*, not harder, by automatically documenting and feeding lessons back into the agent's context. The plugin ships 42+ user-facing skills (slash commands like `/ce:plan`, `/ce:review`, `/ce:compound`) and 50+ specialized subagents. It is the most broadly adopted compound/compounding framework in this survey by star count trajectory and multi-platform support (Claude Code, Cursor, OpenCode, Codex, Kiro, Windsurf, Gemini CLI, and others). Installation: `claude /plugin install compound-engineering` then `/ce-setup`.
+
+#### 2. Spec format
+There is no standalone spec artifact directory equivalent to OpenSpec's `openspec/` or Kiro's `.kiro/specs/`. Plans are authored in Markdown, stored under `.claude/plan-*.md` by convention (per practitioner implementations). The plugin does not enforce a schema; spec-like structure emerges from the `/ce:plan` command output. Configuration artifacts: `.claude/launch.json` (dev server commands), `CLAUDE.md` (project standards), `AGENTS.md` (agent documentation). Plans reference issues, PRDs, RFCs, and commit history but do not define a required document template.
+
+```
+.claude/
+  launch.json          # Dev server / test environment config
+  plan-<task>.md       # Implementation plans (convention, not enforced)
+  CLAUDE.md            # Project standards (consumed by all skills)
+  AGENTS.md            # Agent capability documentation
+~/.gstack/ / learnings DB  # Persisted institutional learnings
+```
+
+#### 3. Lifecycle
+Six-stage loop (commands driven, repeating):
+1. **Ideate** (`/ce:ideate`) — divergent ideation with adversarial filtering; "discover high-impact project improvements"
+2. **Brainstorm** (`/ce:brainstorm`) — deep exploration of a specific direction
+3. **Plan** (`/ce:plan`) — structured multi-step plan with confidence checking; reads issues, RFCs, commit history
+4. **Work** (`/ce:work`) — agents execute plan, write code and tests; engineer not involved
+5. **Review** (`/ce:review`) — tiered persona agents review output; confidence gating; dedup pipeline; optional `/ce:polish-beta` human-in-loop polish phase
+6. **Compound** (`/ce:compound`) — document solved problems, bugs, and a-ha insights to institutional learnings store; `/ce:compound-refresh` evaluates learnings for keep/update/replace/archive
+
+Time allocation philosophy: "80% of compound engineering is in the plan and review phases; 20% is in work and compound."
+
+Supporting utilities: `/ce-debug`, `/ce-optimize`, `/changelog`, `/todo-triage`, `/todo-resolve`, `/sync`, `git-commit-push-pr`, `git-worktree`, `/ce-sessions` (cross-tool session history).
+
+#### 4. Human gates
+- **Plan approval** (implicit) — engineer triggers `/ce:work` only when satisfied with the plan; no hard-coded WAIT instruction, but the 80/20 framing makes plan review the primary human investment
+- **Review gate** (`/ce:review` → `/ce:polish-beta`) — explicit human-in-the-loop polish phase after agent review; creates testable checklists before deployment
+- **Compound gate** (`/ce:compound`) — engineer decides what learnings to surface and persist; controls institutional knowledge quality
+- **Confidence calibration** — review agents use confidence gating; oversized work is split into stacked PRs for human review per chunk
+- **Deployment checklist** — generated before ship, requires human sign-off
+
+Human role is orchestrator/reviewer; all code authorship is delegated to agents. This is the strongest "human-as-reviewer-not-coder" model of the frameworks surveyed.
+
+#### 5. Regeneration model
+**Learning-augmented loop with institutional knowledge compounding.** This is the framework's defining differentiator. Unlike artifact-versioning models (OpenSpec, Kiro, Spec Kit), Compound Engineering's regeneration mechanism is the learnings store: every cycle produces lessons (`/ce:compound`) that are automatically consulted by the `learnings-researcher` agent at the start of subsequent plan cycles. The regeneration model is:
+- Per-cycle: `/ce:compound` → learnings DB → next `/ce:plan` consults learnings-researcher → better plans
+- Drift detection: `/ce:compound-refresh` evaluates whether past learnings are still valid; archives stale entries
+- Session continuity: `/ce-sessions` tracks question/answer history across Claude Code, Codex, and Cursor sessions
+
+This is not spec-as-source-of-truth regeneration (no delta-merge, no downstream artifact cascade). It is *learning-as-accumulator* regeneration — more similar to gstack's compound-learning model than to OpenSpec's delta-merge or Kiro's downstream cascade.
+
+#### 6. Where it fits in the AEE 800-series
+Compound Engineering spans the full sprint lifecycle (ideate → plan → work → review → compound), making it closest to gstack in scope but with a stronger spec-like planning artifact than gstack and a more mechanical compounding mechanism. It is a genuine SDD-adjacent framework: structured planning precedes all work, and the plan artifact (`.claude/plan-*.md`) is a recognizable spec artifact. However, the spec format is convention-only, not schema-enforced, which weakens its standing as a "spec-driven" framework in the strict sense. Recommended tier: **Tier 2** for AEE-807, or **Tier 1** if the article wants to include a framework that bridges the gap between "casual compounding" and "rigorous SDD." It has the highest adoption trajectory of any framework surveyed that was created after mid-2025.
+
+#### 7. When to choose it
+- Teams where knowledge compound (not just task execution) is the primary objective — returning velocity improvements across many sessions
+- Solo developers or lean teams who want multi-platform support (works across 10+ AI coding tools with the same config)
+- Projects where the engineer wants to delegate 100% of code authorship to agents while retaining orchestration and review ownership
+- When a lightweight, convention-based plan format is preferred over a strict schema (lower ceremony than OpenSpec or BMAD)
+- High-velocity products where architectural standards must be preserved without slowing iteration — the "third path" between vibe coding and strict SDD
 
 ---
 
