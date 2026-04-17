@@ -68,3 +68,4 @@ title: AEE list
 - [804.Human Oversight Patterns](804)
 - [805.Workflow Codification](805)
 - [806.Agentic Quality Gates](806)
+- [807.Spec-Driven Development Frameworks in Practice](807)
