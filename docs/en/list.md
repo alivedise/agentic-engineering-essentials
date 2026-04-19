@@ -54,6 +54,7 @@ title: AEE list
 - [604.Parallelism and Synchronization](604)
 - [605.Orchestration Patterns](605)
 - [606.Multi-Agent Failure Modes](606)
+- [607.Agent Swarms](607)
 - [700.What Is a Harness?](700)
 - [701.The Agent Loop (ReAct)](701)
 - [702.Lifecycle Hooks](702)
@@ -69,3 +70,4 @@ title: AEE list
 - [805.Workflow Codification](805)
 - [806.Agentic Quality Gates](806)
 - [807.Spec-Driven Development Frameworks in Practice](807)
+- [808.AGENTS.md and Authoring Best Practices](808)
