@@ -59,6 +59,7 @@ title: AEE 全列表
 - [608.A2A：Agent2Agent 協定](608)
 - [609.ACP：Agent Communication Protocol](609)
 - [610.AG-UI：Agent-User Interaction Protocol](610)
+- [611.A2UI：代理生成式 UI 宣告式協定](611)
 - [700.什麼是執行框架？](700)
 - [701.代理循環（ReAct）](701)
 - [702.生命週期鉤子](702)

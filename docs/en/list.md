@@ -59,6 +59,7 @@ title: AEE list
 - [608.A2A: The Agent2Agent Protocol](608)
 - [609.ACP: The Agent Communication Protocol](609)
 - [610.AG-UI: The Agent-User Interaction Protocol](610)
+- [611.A2UI: Declarative Generative UI Protocol for Agents](611)
 - [700.What Is a Harness?](700)
 - [701.The Agent Loop (ReAct)](701)
 - [702.Lifecycle Hooks](702)
