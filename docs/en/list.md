@@ -47,6 +47,7 @@ title: AEE list
 - [504.Skill Composition](504)
 - [505.Skill Management](505)
 - [506.Skill Governance](506)
+- [507.Superpowers: A Skills-System Case Study](507)
 - [600.When to Coordinate Agents](600)
 - [601.Agent Roles and Topologies](601)
 - [602.Agent Communication](602)
