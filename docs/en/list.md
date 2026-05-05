@@ -40,6 +40,8 @@ title: AEE list
 - [404.Browser and Computer Use](404)
 - [405.Tool Selection](405)
 - [406.Sandboxing and Execution Safety](406)
+- [407.Model Context Protocol](407)
+- [408.Local vs Remote MCP Deployment](408)
 - [500.Skills vs. Tools](500)
 - [501.What Is an Agent Skill](501)
 - [502.The Agent Skill Ecosystem](502)
